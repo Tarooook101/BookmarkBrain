@@ -1,0 +1,209 @@
+﻿/* Footer Styling for BookMarkBrain */
+
+.app-footer {
+    background-color: white;
+    border-top: 1px solid var(--border-color);
+    padding: 2rem 0 1rem; /* Reduced padding from 3rem 0 1.5rem */
+    margin-top: auto;
+    margin-left: var(--sidebar-width); /* Match the updated sidebar width */
+    transition: margin-left var(--transition-speed);
+    color: var(--dark-color);
+    font-size: var(--font-size-sm); /* Reduced from base to sm */
+    width: calc(100% - var(--sidebar-width)); /* Updated to match new sidebar width */
+}
+
+/* When sidebar is collapsed */
+.sidebar-collapsed .app-footer {
+    margin-left: var(--sidebar-collapsed-width);
+    width: calc(100% - var(--sidebar-collapsed-width));
+}
+
+/* Dark mode support */
+.dark-mode .app-footer {
+    background-color: #1e293b;
+    color: #f8fafc;
+    border-top: 1px solid #334155;
+}
+
+.footer-content {
+    padding: 0 1.25rem; /* Slightly reduced padding */
+}
+
+.footer-main {
+    margin-bottom: 1.5rem; /* Reduced from 2rem */
+}
+
+.footer-heading {
+    font-size: var(--font-size-base); /* Reduced from lg to base */
+    font-weight: 600;
+    margin-bottom: 0.75rem; /* Reduced from 1.25rem */
+    position: relative;
+    padding-bottom: 0.5rem; /* Reduced from 0.75rem */
+}
+
+    .footer-heading::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background-color: var(--primary-color);
+        border-radius: var(--border-radius);
+    }
+
+.footer-text {
+    color: var(--secondary-color);
+    margin-bottom: 0.75rem; /* Reduced from 1rem */
+    line-height: 1.4; /* Reduced from 1.6 */
+}
+
+.dark-mode .footer-text {
+    color: #94a3b8;
+}
+
+/* Footer Links */
+.footer-links {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+    .footer-links li {
+        margin-bottom: 0.5rem; /* Reduced from 0.75rem */
+    }
+
+.footer-link {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+    .footer-link:hover {
+        color: var(--primary-color);
+        transform: translateX(3px);
+    }
+
+.dark-mode .footer-link {
+    color: #cbd5e1;
+}
+
+    .dark-mode .footer-link:hover {
+        color: var(--primary-color);
+    }
+
+/* Social Links */
+.social-link {
+    width: 32px; /* Reduced from 36px */
+    height: 32px; /* Reduced from 36px */
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--border-radius-full);
+    background-color: var(--tertiary-color);
+    color: var(--dark-color);
+    transition: all 0.3s ease;
+}
+
+    .social-link:hover {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateY(-3px);
+    }
+
+.dark-mode .social-link {
+    background-color: #334155;
+    color: #f8fafc;
+}
+
+/* Newsletter Form */
+.newsletter-form .form-control {
+    height: 40px; /* Reduced from 44px */
+}
+
+.newsletter-form .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    padding-top: 1rem; /* Reduced from 1.5rem */
+}
+
+.dark-mode .footer-bottom {
+    border-top: 1px solid #334155;
+}
+
+.footer-logo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    color: white;
+    font-size: 1.25rem;
+}
+
+.version-text {
+    font-size: var(--font-size-sm);
+    color: var(--secondary-color);
+}
+
+.dark-mode .version-text {
+    color: #94a3b8;
+}
+
+/* Legal Links */
+.legal-links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .app-footer {
+        padding-top: 1.5rem; /* Further reduced for mobile */
+        margin-left: 0; /* Reset margin on mobile */
+        width: 100%; /* Full width on mobile */
+    }
+
+    .footer-section {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .legal-links {
+        justify-content: flex-start;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .app-footer {
+        padding-top: 1rem; /* Even smaller for mobile */
+    }
+
+    .footer-heading {
+        margin-bottom: 0.75rem; /* Reduced for mobile */
+    }
+
+    .legal-links {
+        gap: 1rem;
+    }
+}

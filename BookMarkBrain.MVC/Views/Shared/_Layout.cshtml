@@ -1,0 +1,218 @@
+﻿@{
+    string pageTitle = ViewData["Title"]?.ToString() ?? "BookMarkBrain";
+    string activeController = ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
+    string activeAction = ViewContext.RouteData.Values["action"]?.ToString() ?? "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@pageTitle - BookMarkBrain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.6/simplebar.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/sidebar-custom.css" />
+    <link rel="stylesheet" href="~/css/footer-custom.css" />
+    @await RenderSectionAsync("Styles", required: false)
+    @await RenderSectionAsync("PageStyles", required: false)
+
+</head>
+<body class="app-body">
+    <div class="app-container">
+        <!-- Top Navigation Bar -->
+        <header class="navbar navbar-expand-lg position-fixed top-0 left-0 w-100" style="z-index: 1030;">
+            <div class="d-flex justify-content-between align-items-center w-100 px-3" style="height: var(--navbar-height);">
+                <!-- Logo & Toggle Button -->
+                <div class="d-flex align-items-center">
+                    <button id="sidebar-toggle" class="btn btn-icon btn-tertiary me-2" type="button" aria-label="Toggle sidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <a href="/" class="brand d-flex align-items-center text-decoration-none">
+                        <div class="brand-icon me-2">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                        <div class="brand-text d-none d-sm-inline">BookMarkBrain</div>
+                    </a>
+                </div>
+
+                <!-- Search -->
+                <div class="search-box d-none d-md-block">
+                    <i class="fas fa-search search-box-icon"></i>
+                    <input type="text" class="form-control" placeholder="Search tweets, hashtags, categories..." aria-label="Search" />
+                </div>
+
+                <!-- Right Menu -->
+                <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-icon btn-tertiary d-md-none" id="mobile-search-button" type="button" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+
+                    <!-- Create Menu -->
+                    <div class="dropdown">
+                        <button class="btn btn-icon btn-tertiary" type="button" id="createMenuButton" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Create new">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end animate__animated animate__fadeInDown animate__faster" aria-labelledby="createMenuButton">
+                            <li><a class="dropdown-item" href="/Tweet/Create"><i class="fas fa-quote-right me-2"></i> New Tweet</a></li>
+                            <li><a class="dropdown-item" href="/Category/Create"><i class="fas fa-folder-plus me-2"></i> New Category</a></li>
+                            <li><a class="dropdown-item" href="/Collection/Create"><i class="fas fa-layer-group me-2"></i> New Collection</a></li>
+                            <li><a class="dropdown-item" href="/Hashtag/Create"><i class="fas fa-hashtag me-2"></i> New Hashtag</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Notifications -->
+                    <div class="dropdown">
+                        <button class="btn btn-icon btn-tertiary" type="button" id="notificationsButton" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-indicator"></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end p-0 animate__animated animate__fadeInDown animate__faster" aria-labelledby="notificationsButton" style="width: 320px;">
+                            <div class="p-3 border-bottom">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6 class="m-0 fw-semibold">Notifications</h6>
+                                    <a href="#" class="text-primary small">Mark all as read</a>
+                                </div>
+                            </div>
+                            <div class="dropdown-notifications-container p-0" style="max-height: 360px; overflow-y: auto;" data-simplebar>
+                                <div class="empty-state p-4 text-center">
+                                    <div class="empty-state-icon mb-3">
+                                        <i class="fas fa-bell-slash fa-2x"></i>
+                                    </div>
+                                    <p class="empty-state-description m-0 text-muted">No new notifications</p>
+                                </div>
+                            </div>
+                            <div class="p-2 border-top text-center">
+                                <a href="#" class="text-primary small">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings -->
+                    <div class="dropdown">
+                        <button class="btn btn-icon btn-tertiary" type="button" id="settingsButton" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Settings">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end animate__animated animate__fadeInDown animate__faster" aria-labelledby="settingsButton">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user-cog me-2"></i> Settings</a></li>
+                            <li>
+                                <a class="dropdown-item d-flex justify-content-between align-items-center" href="#" id="theme-switcher">
+                                    <span><i class="fas fa-moon me-2"></i> Dark Mode</span>
+                                    <div class="form-check form-switch mb-0">
+                                        <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+                                    </div>
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Search Bar (Hidden by default) -->
+            <div id="mobile-search-container" class="d-none w-100 px-3 py-2 bg-white border-top" style="height: 60px;">
+                <div class="search-box w-100">
+                    <i class="fas fa-search search-box-icon"></i>
+                    <input type="text" class="form-control w-100" placeholder="Search tweets, hashtags, categories..." aria-label="Search" />
+                </div>
+            </div>
+        </header>
+
+        <div class="app-content">
+            <!-- Sidebar Navigation -->
+            @await Html.PartialAsync("_Sidebar", ViewData["Categories"] as IEnumerable<BookMarkBrain.Core.Entities.Category>)
+
+            <!-- Main Content Area -->
+            <main class="main-content">
+                @if (ViewData["ShowBreadcrumb"] == null || (bool)ViewData["ShowBreadcrumb"] == true)
+                {
+                    <nav aria-label="breadcrumb" class="mb-3">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="fas fa-home me-1"></i> Home</a></li>
+                            @if (!string.IsNullOrEmpty(activeController) && activeController != "Home")
+                            {
+                                <li class="breadcrumb-item"><a href="/@activeController">@activeController</a></li>
+                            }
+                            @if (!string.IsNullOrEmpty(activeAction) && activeAction != "Index")
+                            {
+                                <li class="breadcrumb-item active" aria-current="page">@activeAction</li>
+                            }
+                        </ol>
+                    </nav>
+                }
+
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="fas fa-exclamation-circle me-2"></i> @TempData["ErrorMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                @if (ViewData["Title"] != null)
+                {
+                    <div class="page-header d-flex justify-content-between align-items-center mb-4">
+                        <h1 class="page-title">@ViewData["Title"]</h1>
+                        @if (IsSectionDefined("PageActions"))
+                        {
+                            <div class="page-actions">
+                                @RenderSection("PageActions", required: false)
+                            </div>
+                        }
+                    </div>
+                }
+
+                <div class="content-wrapper">
+                    @RenderBody()
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        @await Html.PartialAsync("_Footer")
+
+        <!-- Back to top button -->
+        <button id="back-to-top" class="btn btn-icon btn-primary back-to-top-btn" aria-label="Back to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+        <!-- Toast container -->
+        <div id="toast-container" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050;"></div>
+    </div>
+
+
+        <!-- FontAwesome CDN (for icons) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+                integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <!-- BookMarkBrain Core Scripts -->
+        <script src="~/js/site.js"></script>
+        <script src="~/js/sidebar.js"></script>
+        <script src="~/js/theme-switcher.js"></script>
+
+        <!-- Page-specific scripts -->
+        @await RenderSectionAsync("PageScripts", required: false)
+        @await RenderSectionAsync("AddToHead", required: false)
+</body>
+</html>

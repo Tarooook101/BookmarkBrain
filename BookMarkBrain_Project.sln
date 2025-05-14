@@ -1,0 +1,62 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookMarkBrain.Core", "BookMarkBrain.Core\BookMarkBrain.Core.csproj", "{3EE2918D-5220-48D0-BE9C-EFAF567CCACD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookMarkBrain.Data", "BookMarkBrain.Data\BookMarkBrain.Data.csproj", "{4219FE80-A9DF-47EA-9C2E-EDFF080DFCBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookMarkBrain.Services", "BookMarkBrain.Services\BookMarkBrain.Services.csproj", "{255FD3FA-FDB3-4A0B-B034-D1ED9A06C996}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookMarkBrain.API", "BookMarkBrain.API\BookMarkBrain.API.csproj", "{C770B26E-ACBC-4138-B7E1-BD8E411A01E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookMarkBrain.MVC", "BookMarkBrain.MVC\BookMarkBrain.MVC.csproj", "{CBE44D4E-5BD3-4C16-895A-A12436FBD5E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", "{42321C28-264C-453B-ABAE-2443EEA02F9C}"
+	ProjectSection(SolutionItems) = preProject
+		launchSettings.json = launchSettings.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EE2918D-5220-48D0-BE9C-EFAF567CCACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EE2918D-5220-48D0-BE9C-EFAF567CCACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EE2918D-5220-48D0-BE9C-EFAF567CCACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EE2918D-5220-48D0-BE9C-EFAF567CCACD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4219FE80-A9DF-47EA-9C2E-EDFF080DFCBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4219FE80-A9DF-47EA-9C2E-EDFF080DFCBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4219FE80-A9DF-47EA-9C2E-EDFF080DFCBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4219FE80-A9DF-47EA-9C2E-EDFF080DFCBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{255FD3FA-FDB3-4A0B-B034-D1ED9A06C996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{255FD3FA-FDB3-4A0B-B034-D1ED9A06C996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{255FD3FA-FDB3-4A0B-B034-D1ED9A06C996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{255FD3FA-FDB3-4A0B-B034-D1ED9A06C996}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C770B26E-ACBC-4138-B7E1-BD8E411A01E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C770B26E-ACBC-4138-B7E1-BD8E411A01E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C770B26E-ACBC-4138-B7E1-BD8E411A01E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C770B26E-ACBC-4138-B7E1-BD8E411A01E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBE44D4E-5BD3-4C16-895A-A12436FBD5E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBE44D4E-5BD3-4C16-895A-A12436FBD5E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBE44D4E-5BD3-4C16-895A-A12436FBD5E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBE44D4E-5BD3-4C16-895A-A12436FBD5E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3EE2918D-5220-48D0-BE9C-EFAF567CCACD} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{4219FE80-A9DF-47EA-9C2E-EDFF080DFCBD} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{255FD3FA-FDB3-4A0B-B034-D1ED9A06C996} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{C770B26E-ACBC-4138-B7E1-BD8E411A01E1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{CBE44D4E-5BD3-4C16-895A-A12436FBD5E8} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3962FF3-8DC0-4449-9FCF-9C7B23D25804}
+	EndGlobalSection
+EndGlobal

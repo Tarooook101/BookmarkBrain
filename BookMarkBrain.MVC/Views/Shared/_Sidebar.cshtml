@@ -1,0 +1,201 @@
+﻿@model IEnumerable<BookMarkBrain.Core.Entities.Category>
+
+<aside id="sidebar" class="sidebar">
+    <div class="sidebar-content" data-simplebar>
+        <!-- Navigation Section -->
+        <div class="sidebar-section">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" && ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "active" : "")" href="/">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Tweet" ? "active" : "")" href="/Tweet">
+                        <i class="fas fa-quote-right"></i>
+                        <span>Tweets</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Collection" ? "active" : "")" href="/Collection">
+                        <i class="fas fa-layer-group"></i>
+                        <span>Collections</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Hashtag" ? "active" : "")" href="/Hashtag">
+                        <i class="fas fa-hashtag"></i>
+                        <span>Hashtags</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Category" ? "active" : "")" href="/Category">
+                        <i class="fas fa-folder"></i>
+                        <span>Categories</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Categories Section -->
+        <div class="sidebar-section">
+            <div class="sidebar-heading">
+                <span>Categories</span>
+                <a href="/Category/Create" class="sidebar-action-btn" title="Add new category">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>
+
+            <div class="categories-group">
+                @if (Model != null && Model.Any())
+                {
+                    @await Html.PartialAsync("_CategoryTreeView", new { Categories = Model.Where(c => c.ParentCategoryId == null), Level = 0 })
+                }
+                else
+                {
+                    <div class="empty-state-mini">
+                        <p>No categories yet</p>
+                        <a href="/Category/Create" class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-plus me-1"></i> Add Category
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Popular Hashtags Section -->
+        <div class="sidebar-section">
+            <div class="sidebar-heading">
+                <span>Popular Hashtags</span>
+                <a href="/Hashtag" class="sidebar-action-btn" title="View all hashtags">
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+
+            <div class="hashtag-cloud">
+                @{
+                    // This is just a placeholder example for the UI
+                    string[] mockHashtags = { "Programming", "JavaScript", "DotNet", "Database", "WebDev", "API", "Frontend", "Design", "UX", "Performance" };
+                    string[] colors = { "popular", "", "", "popular", "", "", "popular", "", "", "" };
+
+                    for (int i = 0; i < mockHashtags.Length; i++)
+                    {
+                        <a href="/Hashtag/Search?q=@mockHashtags[i]" class="hashtag-badge @colors[i]">
+                            #@mockHashtags[i]
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Recent Activity Section -->
+        <div class="sidebar-section">
+            <div class="sidebar-heading">
+                <span>Recent Activity</span>
+                <a href="#" class="sidebar-action-btn" title="View all activity">
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+
+            <div class="recent-activity">
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
+                    <div class="activity-details">
+                        <div class="activity-title">New tweet saved</div>
+                        <div class="activity-time">5 minutes ago</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-folder-plus"></i>
+                    </div>
+                    <div class="activity-details">
+                        <div class="activity-title">New category created</div>
+                        <div class="activity-time">Yesterday</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <div class="activity-details">
+                        <div class="activity-title">New hashtag added</div>
+                        <div class="activity-time">3 days ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="sidebar-collapse-btn" id="sidebar-collapse">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+
+            <div class="sidebar-footer-actions">
+                <a href="/Home/About" class="btn btn-icon btn-tertiary" title="About">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+                <a href="/Home/Privacy" class="btn btn-icon btn-tertiary" title="Privacy">
+                    <i class="fas fa-shield-alt"></i>
+                </a>
+                <a href="#" class="btn btn-icon btn-tertiary" title="Help">
+                    <i class="fas fa-question-circle"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</aside>
+
+@* This is a partial for the category tree view - in a real application, you would put this in a separate file *@
+@{
+    // This would normally be in a separate _CategoryTreeView.cshtml partial
+    async Task RenderCategoryTree(IEnumerable<BookMarkBrain.Core.Entities.Category> categories, int level)
+    {
+        foreach (var category in categories)
+        {
+            string levelClass = level > 0 ? $"ps-{Math.Min(level * 2, 5)}" : "";
+            bool hasChildren = category.ChildCategories != null && category.ChildCategories.Any();
+            string collapseId = $"category-{category.Id}";
+
+            <div class="category-item-wrapper @levelClass">
+                <div class="d-flex align-items-center w-100">
+                    <a href="/Category/Details/@category.Id" class="category-item @(ViewContext.RouteData.Values["id"]?.ToString() == category.Id.ToString() ? "active" : "")">
+                        <span class="category-color" style="background-color: @category.ColorHex;"></span>
+                        <span class="category-name">@category.Name</span>
+                        @if (hasChildren)
+                        {
+                            <span class="ms-auto badge bg-light text-secondary">@category.ChildCategories.Count</span>
+                        }
+                    </a>
+
+                    @if (hasChildren)
+                    {
+                        <button class="category-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="false" aria-controls="@collapseId">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    }
+                </div>
+
+                @if (hasChildren)
+                {
+                    <div class="collapse" id="@collapseId">
+                        <div class="nested-categories">
+                            @{
+                                await RenderCategoryTree(category.ChildCategories, level + 1);
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    }
+}
+

@@ -1,0 +1,151 @@
+﻿@{
+    var currentYear = DateTime.Now.Year;
+    var appVersion = "1.0.0"; // You can inject this from your configuration
+}
+
+<footer class="app-footer">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Main Footer Content -->
+            <div class="col-12">
+                <div class="footer-content">
+                    <!-- Footer Top Section with columns -->
+                    <div class="footer-main">
+                        <div class="row">
+                            <!-- Column 1: About -->
+                            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                                <div class="footer-section">
+                                    <h5 class="footer-heading">About BookMarkBrain</h5>
+                                    <p class="footer-text">
+                                        Organize and search your valuable content from Twitter and other platforms with
+                                        powerful categorization and tagging.
+                                    </p>
+                                    <div class="social-links mt-3">
+                                        <a href="#" class="social-link" aria-label="Twitter">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                        <a href="#" class="social-link" aria-label="GitHub">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                        <a href="#" class="social-link" aria-label="LinkedIn">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Column 2: Navigation -->
+                            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                                <div class="footer-section">
+                                    <h5 class="footer-heading">Navigation</h5>
+                                    <ul class="footer-links">
+                                        <li><a href="/" class="footer-link"><i class="fas fa-home fa-fw me-1"></i> Home</a></li>
+                                        <li><a href="/Tweet" class="footer-link"><i class="fas fa-quote-right fa-fw me-1"></i> Tweets</a></li>
+                                        <li><a href="/Category" class="footer-link"><i class="fas fa-folder fa-fw me-1"></i> Categories</a></li>
+                                        <li><a href="/Collection" class="footer-link"><i class="fas fa-layer-group fa-fw me-1"></i> Collections</a></li>
+                                        <li><a href="/Hashtag" class="footer-link"><i class="fas fa-hashtag fa-fw me-1"></i> Hashtags</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Column 3: Resources -->
+                            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                                <div class="footer-section">
+                                    <h5 class="footer-heading">Resources</h5>
+                                    <ul class="footer-links">
+                                        <li><a href="/Home/About" class="footer-link">About</a></li>
+                                        <li><a href="/Home/Privacy" class="footer-link">Privacy Policy</a></li>
+                                        <li><a href="/Home/Terms" class="footer-link">Terms of Service</a></li>
+                                        <li><a href="/Home/FAQ" class="footer-link">FAQ</a></li>
+                                        <li><a href="/Home/Contact" class="footer-link">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Column 4: Newsletter -->
+                            <div class="col-lg-3 col-md-6">
+                                <div class="footer-section">
+                                    <h5 class="footer-heading">Stay Updated</h5>
+                                    <p class="footer-text mb-3">Subscribe to our newsletter for updates and new features.</p>
+                                    <form id="newsletter-form" class="newsletter-form">
+                                        <div class="input-group">
+                                            <input type="email" class="form-control" placeholder="Your email" aria-label="Email for newsletter" required>
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fas fa-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                        <small class="form-text text-muted mt-2">We'll never share your email with anyone else.</small>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer Bottom Section with copyright -->
+                    <div class="footer-bottom mt-4 pt-3">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="footer-logo me-3">
+                                        <i class="fas fa-bookmark"></i>
+                                    </div>
+                                    <div>
+                                        <p class="mb-0">&copy; @currentYear BookMarkBrain. All rights reserved.</p>
+                                        <p class="version-text mb-0">Version @appVersion</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="legal-links">
+                                    <li><a href="/Home/Privacy" class="footer-link">Privacy</a></li>
+                                    <li><a href="/Home/Terms" class="footer-link">Terms</a></li>
+                                    <li><a href="/Home/Cookies" class="footer-link">Cookies</a></li>
+                                    <li><a href="/Home/Accessibility" class="footer-link">Accessibility</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Newsletter Success Modal -->
+<div class="modal fade" id="newsletterSuccessModal" tabindex="-1" aria-labelledby="newsletterSuccessModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newsletterSuccessModalLabel">Thank You!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center mb-3">
+                    <i class="fas fa-envelope-open-text fa-3x text-success"></i>
+                </div>
+                <p>You've successfully subscribed to our newsletter. We'll keep you updated with the latest features and news!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add this script at the end of the file -->
+<script>
+    // Newsletter form submission
+    document.addEventListener('DOMContentLoaded', function() {
+        const newsletterForm = document.getElementById('newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Here you would normally send the email to your backend
+                // For now, just show the success modal
+                const modal = new bootstrap.Modal(document.getElementById('newsletterSuccessModal'));
+                modal.show();
+                newsletterForm.reset();
+            });
+        }
+    });
+</script>

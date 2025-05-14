@@ -1,0 +1,13 @@
+﻿
+namespace BookMarkBrain.Core.Entities;
+
+public class TweetHashtag : BaseEntity
+{
+    public Guid TweetId { get; set; }
+
+    public Guid HashtagId { get; set; }
+
+    public virtual Tweet Tweet { get; set; }
+
+    public virtual Hashtag Hashtag { get; set; }
+}

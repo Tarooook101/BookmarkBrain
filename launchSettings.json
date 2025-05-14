@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Multiple Projects": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7234",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "launchUrl": "https://localhost:7234"
+    }
+  }
+}
